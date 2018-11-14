@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <title>customer</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="css/bootstrap.min.css">
+      <link rel="stylesheet" href="css/style.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <!--      <link rel="stylesheet" href="css/font-awesome.min.css">-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.13.1/jquery.validate.min.js"></script>
+      <!-- Latest compiled and minified CSS -->
+      <!-- Latest compiled and minified JavaScript -->
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+   </head>
+   <style>
+      body{
+      overflow-x: hidden;
+      background-color: #f4f3f8;
+      } 
+      .fa{
+      font-size: large;
+      }
+      .fablue{
+               color: #0b75ef;
+      }
+       
+       
+       
+       
+   </style>
+   <body>
+      <div class="container-fluid">
+         <div class="row">
+            <div id="wrapper" class="toggled">
+               <!-- Sidebar -->
+               <div id="sidebar-wrapper" >
+                  <ul class="sidebar-nav" style="margin-left:0;">
+                     <li class="sidebar-brand">
+                        <a href="#menu-toggle"  id="menu-toggle" style="margin-top:20px;float:right;" > <i class="fa fa-bars " style="font-size:20px !Important; margin: 11px 20px -13px 4px;" aria-hidden="true" aria-hidden="true"></i> </a>
+                     </li>
+                     <li class="top">
+                        <a href="dashboard.html"><i class="fa fa-dashboard " aria-hidden="true"> </i> <span style="margin-left:10px;">Dashboard</span>  </a>
+                     </li>
+                     <li>
+                        <a href="user.html"> <i class="fa fa-play-circle-o " aria-hidden="true"> </i> <span style="margin-left:10px;">Add User</span> </a>
+                     </li>
+                     <li>
+                        <a href="#"> <i class="fa fa-minus-square-o" aria-hidden="true"> </i> <span style="margin-left:10px;">Add Customer</span> </a>
+                     </li>
+                     <li>
+                        <a href="#"> <i class="fa fa-folder-o" aria-hidden="true"> </i> <span style="margin-left:10px;">Section</span> </a>
+                     </li>
+                     <li>
+                        <a href="#"><i class="	fa fa-user-o" aria-hidden="true"> </i> <span style="margin-left:10px;">Section </span> </a>
+                     </li>
+                     <li class="topset">
+                        <a href="#"> <i class="fa fa-gear" aria-hidden="true"> </i> <span style="margin-left:10px;">Section</span> </a>
+                     </li>
+                  </ul>
+               </div>
+               <!-- /#sidebar-wrapper -->
+               <!-- Page Content -->
+               <div  >
+                  <div class="container-fluid">
+                     <div class="row">
+                        <div class="col-lg-12 ">
+                           <div class="tab ">
+                              <div class="" style=" border-bottom: solid 1px #ccc;">
+                                 <h4 align="center" >Customer <a href="#" class=" fa fa-ellipsis-v" style="float: right;  margin-right: 15px; color: #777;"></a><a type="button" onclick="openCity(event, 'form')"   class="tablinks btn btn-sm fa fa-user-plus" style="float: right;  margin: -6px 5px; color: #777;"></a></h4>
+                              </div>
+                              <div class="" style=" border-bottom: solid 1px #ccc;">
+                                 <div  >
+                                    <div class="inputs input-group stylish-input-group">
+                                       <input type="text" class="form-control"  placeholder="Search" >
+                                       <span class="input-group-addon">
+                                       <button type="submit" style="padding: 0 15px;">
+                                       <span class="fa fa-search"></span>
+                                       </button>  
+                                       </span>
+                                    </div>
+                                 </div>
+                              </div>
+                              <div class="list-group">
+                                 <button class="tablinks" onclick="openCity(event, 'sec1')" id="defaultOpen">
+                                    <div class="col-xs-12 col-sm-3">
+                                       <img src="images/user1.jpg" class="img-responsive img-circle" />
+                                    </div>
+                                    <div class="col-xs-12 col-sm-9">
+                                       <span class="name">General Motor</span><br/>
+                                       <span class="">Alex McGartly</span><br/>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                 </button>
+                                 <button class="tablinks" onclick="openCity(event, 'Dummy')" id="defaultOpen">
+                                    <div class="col-xs-12 col-sm-3">
+                                       <img src="images/user1.jpg" class="img-responsive img-circle" />
+                                    </div>
+                                    <div class="col-xs-12 col-sm-9">
+                                       <span class="name">ABCD School</span><br/>
+                                       <span class="">Seth Frazier</span><br/>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                 </button>
+                                 <button class="tablinks" onclick="openCity(event, 'Paris')" id="defaultOpen">
+                                    <div class="col-xs-12 col-sm-3">
+                                       <img src="images/user1.jpg" class="img-responsive img-circle" />
+                                    </div>
+                                    <div class="col-xs-12 col-sm-9">
+                                       <span class="name">Airs Cargos</span><br/>
+                                       <span class="">Michal Jone</span><br/>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                 </button>
+                                 <button class="tablinks" onclick="openCity(event, 'India')" id="defaultOpen">
+                                    <div class="col-xs-12 col-sm-3">
+                                       <img src="images/user1.jpg" class="img-responsive img-circle" />
+                                    </div>
+                                    <div class="col-xs-12 col-sm-9">
+                                       <span class="name">Vcare Hospital</span><br/>
+                                       <span class="">Smith Corner</span><br/>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                 </button>
+                                 <button class="tablinks" onclick="openCity(event, 'India')" id="defaultOpen">
+                                    <div class="col-xs-12 col-sm-3">
+                                       <img src="images/user1.jpg" class="img-responsive img-circle" />
+                                    </div>
+                                    <div class="col-xs-12 col-sm-9">
+                                       <span class="name">Air Port</span><br/>
+                                       <span class="">Cris John</span><br/>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                 </button>
+                                 <button class="tablinks" onclick="openCity(event, 'India')" id="defaultOpen">
+                                    <div class="col-xs-12 col-sm-3">
+                                       <img src="images/user1.jpg" class="img-responsive img-circle" />
+                                    </div>
+                                    <div class="col-xs-12 col-sm-9">
+                                       <span class="name">Seth Frazier</span><br/>
+                                       <span class=""> 7396 E North St</span><br/>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                 </button>
+                                 <button class="tablinks" onclick="openCity(event, 'India')" id="defaultOpen">
+                                    <div class="col-xs-12 col-sm-3">
+                                       <img src="images/user1.jpg" class="img-responsive img-circle" />
+                                    </div>
+                                    <div class="col-xs-12 col-sm-9">
+                                       <span class="name">Seth Frazier</span><br/>
+                                       <span class=""> 7396 E North St</span><br/>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                 </button>
+                                 <button class="tablinks" onclick="openCity(event, 'India')" id="defaultOpen">
+                                    <div class="col-xs-12 col-sm-3">
+                                       <img src="images/user1.jpg" class="img-responsive img-circle" />
+                                    </div>
+                                    <div class="col-xs-12 col-sm-9">
+                                       <span class="name">Seth Frazier</span><br/>
+                                       <span class=""> 7396 E North St</span><br/>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                 </button>
+                              </div>
+                           </div>
+                           <div class="" style="border: solid 1px #ccc;">
+                              <h4 align="center">Details<a href="#" class=" fa fa-bell" style="float: right;  margin-right: 15px ; color: #777;"></a></h4>
+                               
+                               
+                          <!--    add customer from ist tab   starts       -->
+                               
+                               
+                               
+                               <div id="form" class="tabcontent">
+                                  <div >
+                        <div class="">
+                          
+                           <h4 class="modal-title" id="myModalLabel">Add Customer</h4>
+                        </div>
+                        <div class="modal-body">
+                           <!-- use method="post" to send your form to server -->
+                           <form class="form-horizontal" method="post">
+                              <fieldset class="col-sm-6">
+                                 <legend>Information</legend>
+                                 <div class="form-group">
+                                    <h5 for="fullname" class="col-sm-3 control-label">Name</h5>
+                                    <div class="col-sm-9">
+                                       <input type="text" id="fullname" name="fullname" class="form-control" required  />
+                                    </div>
+                                  
+                                 </div>
+                                 <div class="form-group">
+                                    <h5 for="luckynumber" class="col-sm-3 control-lable">Type</h5>
+                                    <div class="col-sm-9">
+                                       <select name="luckynumber" id="luckynumber" class="col-sm-10 form-control">
+                                          <option>Select</option>
+                                          <option>Auto Mobile</option>
+                                          <option>Cargos</option>
+                                          <option>Air Port</option>
+                                          <option>School</option>
+                                       </select>
+                                    </div>
+                                 </div>
+                                 <div class="form-group">
+                                    <h5 for="luckynumber" class="col-sm-3 control-lable">Status</h5>
+                                    <div class="col-sm-9">
+                                       <select name="luckynumber" id="luckynumber" class="col-sm-10 form-control">
+                                          <option>Select</option>
+                                          <option>Active</option>
+                                          <option>Deactive</option>
+                                       </select>
+                                    </div>
+                                 </div>
+                                 <div class="form-group">
+                                    <h5 for="fullname" class="col-sm-3 control-label">User Name</h5>
+                                    <div class="col-sm-9">
+                                       <input type="text" id="fullname" name="fullname" class="form-control" required  />
+                                    </div>
+                                   
+                                 </div>
+                                 <div class="form-group">
+                                    <h5 for="maili" class="col-sm-3 control-label">EmailI</h5>
+                                    <div class="col-sm-9">
+                                       <input type="mail" id="maili" name="maili" class="form-control" required  />
+                                    </div>
+                                   
+                                 </div>
+                                 <div class="form-group">
+                                    <h5 for="mailii" class="col-sm-3 control-label">EmailII</h5>
+                                    <div class="col-sm-9">
+                                       <input type="mail" id="mailii" name="mailii" class="form-control" required  />
+                                    </div>
+                                 
+                                 </div>
+                                 <div class="form-group">
+                                    <h5 for="password" class="col-sm-3 control-label">Password</h5>
+                                    <div class="col-sm-9">
+                                       <input type="password" id="password" name="password" class="form-control"  required/>
+                                    </div>
+                                 </div>
+                              </fieldset>
+                              <fieldset class="col-sm-6">
+                                 <legend>Contact</legend>
+                                 <div class="form-group">
+                                    <h5 for="personname" class="col-sm-3 control-label">Person Name</h5>
+                                    <div class="col-sm-9">
+                                       <input type="text" id="personname" name="personname" class="form-control" required  />
+                                    </div>
+                                  
+                                 </div>
+                                 <div class="form-group">
+                                    <h5 for="phone1" class="col-sm-3 control-label">PhoneI</h5>
+                                    <div class="col-sm-9">
+                                       <input type="number" id="phone1" name="phone1" class="form-control" required  />
+                                    </div>
+                                   
+                                 </div>
+                                 <div class="form-group">
+                                    <h5 for="phone2" class="col-sm-3 control-label">PhoneII</h5>
+                                    <div class="col-sm-9">
+                                       <input type="number" id="phone2" name="phone2" class="form-control" required  />
+                                    </div>
+                                  
+                                 </div>
+                                 <div class="form-group">
+                                    <h5 for="address" class="col-sm-3 control-label">Address</h5>
+                                    <div class="col-sm-9">
+                                       <input type="text" id="address" name="address" class="form-control" required  />
+                                    </div>
+                                  
+                                 </div>
+                                 <div class="form-group">
+                                    <h5 for="city" class="col-sm-3 control-label">City</h5>
+                                    <div class="col-sm-9">
+                                       <input type="text" id="city" name="city" class="form-control" required  />
+                                    </div>
+                                  
+                                 </div>
+                                 <div class="form-group">
+                                    <h5 for="state" class="col-sm-3 control-label">State</h5>
+                                    <div class="col-sm-9">
+                                       <input type="text" id="state" name="state" class="form-control" required  />
+                                    </div>
+                                   
+                                 </div>
+                                 <div class="form-group">
+                                    <h5 for="zip" class="col-sm-3 control-label">Zip</h5>
+                                    <div class="col-sm-9">
+                                       <input type="number" id="zip" name="zip" class="form-control" required  />
+                                    </div>
+                                  
+                                 </div>
+                                 <!-- <div class="col-sm-offset-2 col-sm-10 rsButtons">
+                                    <button type="reset" class="btn btn-primary">Reset</button>
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    </div> -->
+                              </fieldset>
+                              <div class="form-group">
+                                 <!--
+                                    <div class="col-sm-offset-2 col-sm-10">
+                                    	<input type="submit" class="btn btn-primary" value="Submit">
+                                    </div>
+                                    -->
+                              </div>
+                           </form>
+                        </div>
+                        <div class="modal-footer">
+                           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                           <button type="button" class="btn btn-primary">Save changes</button>
+                        </div>
+                     </div>
+                              </div>
+                               
+                                <!--        add customer from end    -->
+                               
+                              <div id="sec1" class="tabcontent">
+                                  <div class="col-sm-12">
+                                  <div class="row">
+                                      <div class="col-sm-4">
+                                       <table class="table">
+                                           <tbody>
+                                                <tr>
+                                                <td class="fablue">Name</td>
+                                                <td>-</td>
+                                                <td contenteditable="true">General Motors</td>
+                                                </tr>
+                                               </tbody>
+                                           
+                                           </table>
+                                      </div>
+                                       <div class="col-sm-4 col-sm-offset-4">
+                                       <!--                                        <button class="btn btn-xs btn-primarys" type="button" data-toggle="modal" data-target="#myModal"  style="float: right;">Edit</button>-->
+                                      </div>
+                                      </div>
+                                  </div>
+                                 
+                             
+                                 <div class="row">
+                                    <div class="col-md-3">
+                                     <br>
+                                       <div class="col-sm-12">
+                                          <div class="small-12 medium-2 large-2 columns">
+                                             <label>
+                                               <div  class="circle">
+                                                   <!-- User Profile Image -->
+                                                   <img class="profile-pic images" src="images/user1.jpg">
+                                                   <div class="middle">
+                                                      <div class="text">Click Here</div>
+                                                   </div>
+                                                   <!-- Default Image -->
+                                                   <!-- <i class="fa fa-user fa-5x"></i> -->
+                                                </div>
+                                                <input class="file-upload " type="file" accept="image/*"/>
+                                                <div class="p-image" align="center">
+                                                   <span class="fa fa-camera fablue upload-button"></span>
+                                                </div>
+                                             </label>
+                                          </div>
+                                       </div>
+                                       <div class="col-sm-12" style="    margin:  135px 15px;">
+                                           
+                                           <table class="table">
+                                           <tbody>
+                                                <tr>
+                                                <td><span class="fa fa-info-circle fablue"></span></td>
+                                                
+                                                <td>Active</td>
+                                                </tr>
+                                               </tbody>
+                                           
+                                           </table>
+                                         
+                                       </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                       <br><br><br>
+                                        <table class="table">
+                                            
+                                            <tbody>
+                                                <tr>
+                                                <td><span class="fa fa-user fablue"></span></td>
+                                                
+                                                <td contenteditable="true" >Alex Mc Gartly</td>
+                                                </tr>
+                                                                                         
+                                                <tr>
+                                                <td><span class="fa fa-phone fablue"></span></td>
+                                                
+                                                <td contenteditable="true">2480909101</td>
+                                                </tr>
+                                               
+                                                <tr>
+                                                <td></td>
+                                                
+                                                <td contenteditable="true">4041299089</td>
+                                                </tr>
+                                                
+                                                <tr>
+                                                <td><span class="fa fa-envelope fablue"></span> </td>
+                                                
+                                                <td contenteditable="true"> alex@gm.com</td>
+                                                </tr>
+                                                
+                                                <tr>
+                                                <td></td>
+                                                
+                                                <td contenteditable="true">mcgartly@gm.com</td>
+                                                </tr>
+                                            </tbody>
+                                        
+                                        </table>
+                                     
+                                      
+                                    </div>
+                                    <div class="col-md-5">
+                                      
+                                          
+                                          
+                                       
+                                       <br><br><br>
+                                        <table class="table">
+                                        <tbody>
+                                        <tr>
+                                        <td><span class="fa fa-map-marker fablue"></span></td>
+                                        
+                                        <td contenteditable="true">2089 Newcastle rd apt 190</td>
+                                        </tr>
+
+                                        <tr>
+                                        <td></td>
+                                        
+                                        <td contenteditable="true">Novi, MI, 48375</td>
+                                        </tr>
+                                          </tbody>
+                                        
+                                        </table>
+                                    </div>
+                                  </div>
+                              </div>
+                              <div id="Dummy" class="tabcontent">
+                                  <div class="col-sm-12">
+                                  <div class="row">
+                                      <div class="col-sm-4">
+                                       <table class="table">
+                                           <tbody>
+                                                <tr>
+                                                <td class="fablue">Name</td>
+                                                <td>-</td>
+                                                <td contenteditable="true">ABCD School</td>
+                                                </tr>
+                                               </tbody>
+                                           
+                                         </table>
+                                      </div>
+                                       <div class="col-sm-4 col-sm-offset-4">
+                                       <!--                                        <button class="btn btn-xs btn-primarys" type="button" data-toggle="modal" data-target="#myModal"  style="float: right;">Edit</button>-->
+                                      </div>
+                                      </div>
+                                  </div>
+                                 
+                             
+                                 <div class="row">
+                                    <div class="col-md-3">
+                                     <br>
+                                       <div class="col-sm-12">
+                                          <div class="small-12 medium-2 large-2 columns">
+                                             <label>
+                                                <div class="circle">
+                                                   <!-- User Profile Image -->
+                                                   <img class="profile-pic images" src="images/user1.jpg">
+                                                   <div class="middle">
+                                                      <div class="text">Click Here</div>
+                                                   </div>
+                                                   <!-- Default Image -->
+                                                   <!-- <i class="fa fa-user fa-5x"></i> -->
+                                                </div>
+                                                <input class="file-upload " type="file" accept="image/*"/>
+                                                <div class="p-image" align="center">
+                                                   <span class="fa fa-camera fablue upload-button"></span>
+                                                </div>
+                                             </label>
+                                          </div>
+                                       </div>
+                                       <div class="col-sm-12" style="    margin:  135px 15px;">
+                                           
+                                           <table class="table">
+                                           <tbody>
+                                                <tr>
+                                                <td><span class="fa fa-info-circle fablue"></span></td>
+                                                
+                                                <td>Active</td>
+                                                </tr>
+                                               </tbody>
+                                           
+                                           </table>
+                                         
+                                       </div>
+                                    </div>
+                                    <div class="col-md-4  table-editable" id="table" >
+                                       <br><br><br>
+                                        <table class="table">
+                                            
+                                            <tbody>
+                                                <tr>
+                                                <td><span class="fa fa-user fablue"></span></td>
+                                                
+                                                <td contenteditable="true">Seth Frazier</td>
+                                                </tr>
+                                                                                         
+                                                <tr>
+                                                  
+                                                <td><span class="fa fa-phone fablue"></span></td>
+                                                
+                                                <td contenteditable="true">2480909101</td>
+                                                </tr>
+                                               
+                                                <tr>
+                                                <td></td>
+                                                
+                                                <td contenteditable="true">4041299089</td>
+                                                </tr>
+                                                
+                                                <tr>
+                                                <td><span class="fa fa-envelope fablue"></span></td>
+                                                
+                                                <td contenteditable="true">alex@gm.com</td>
+                                                </tr>
+                                                
+                                                <tr>
+                                                <td></td>
+                                                
+                                                <td contenteditable="true">mcgartly@gm.com</td>
+                                                </tr>
+                                            </tbody>
+                                        
+                                        </table>
+                                     
+                                      
+                                    </div>
+                                    <div class="col-md-5">
+                                      
+                                          
+                                          
+                                       
+                                       <br><br><br>
+                                        <table class="table">
+                                        <tbody>
+                                        <tr>
+                                        <td><span class="fa fa-map-marker fablue"></span></td>
+                                        
+                                        <td contenteditable="true">7396 E North St 190</td>
+                                        </tr>
+
+                                        <tr>
+                                        <td></td>
+                                        
+                                        <td contenteditable="true">Novi, MI, 48375</td>
+                                        </tr>
+                                          </tbody>
+                                        
+                                        </table>
+                                    </div>
+                                 </div>
+                              </div>
+                              <div id="Paris" class="tabcontent">
+                                 <div class="col-sm-12">
+                                  <div class="row">
+                                      <div class="col-sm-4">
+                                       <table class="table">
+                                           <tbody>
+                                                <tr>
+                                                <td class="fablue">Name</td>
+                                                <td>-</td>
+                                                <td contenteditable="true">General Motors</td>
+                                                </tr>
+                                               </tbody>
+                                           
+                                           </table>
+                                      </div>
+                                       <div class="col-sm-4 col-sm-offset-4">
+                                       <!--                                        <button class="btn btn-xs btn-primarys" type="button" data-toggle="modal" data-target="#myModal"  style="float: right;">Edit</button>-->
+                                      </div>
+                                      </div>
+                                  </div>
+                                 
+                             
+                                 <div class="row">
+                                    <div class="col-md-3">
+                                     <br>
+                                       <div class="col-sm-12">
+                                          <div class="small-12 medium-2 large-2 columns">
+                                             <label>
+                                                <div class="circle">
+                                                   <!-- User Profile Image -->
+                                                   <img class="profile-pic images" src="images/user1.jpg">
+                                                   <div class="middle">
+                                                      <div class="text">Click Here</div>
+                                                   </div>
+                                                   <!-- Default Image -->
+                                                   <!-- <i class="fa fa-user fa-5x"></i> -->
+                                                </div>
+                                                <input class="file-upload " type="file" accept="image/*"/>
+                                                <div class="p-image" align="center">
+                                                   <span class="fa fa-camera fablue upload-button"></span>
+                                                </div>
+                                             </label>
+                                          </div>
+                                       </div>
+                                       <div class="col-sm-12" style="    margin:  135px 15px;">
+                                           
+                                           <table class="table">
+                                           <tbody>
+                                                <tr>
+                                                <td><span class="fa fa-info-circle fablue"></span></td>
+                                                
+                                                <td>Active</td>
+                                                </tr>
+                                               </tbody>
+                                           
+                                           </table>
+                                         
+                                       </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                       <br><br><br>
+                                        <table class="table">
+                                            
+                                            <tbody>
+                                                <tr>
+                                                <td><span class="fa fa-user fablue"></span></td>
+                                                
+                                                <td contenteditable="true">Alex Mc Gartly</td>
+                                                </tr>
+                                                                                         
+                                                <tr>
+                                                <td><span class="fa fa-phone fablue"></span></td>
+                                                
+                                                <td contenteditable="true">2480909101</td>
+                                                </tr>
+                                               
+                                                <tr>
+                                                <td></td>
+                                                
+                                                <td contenteditable="true">4041299089</td>
+                                                </tr>
+                                                
+                                                <tr>
+                                                <td><span class="fa fa-envelope fablue"></span></td>
+                                                
+                                                <td contenteditable="true"> alex@gm.com</td>
+                                                </tr>
+                                                
+                                                <tr>
+                                                <td></td>
+                                                
+                                                <td contenteditable="true">mcgartly@gm.com</td>
+                                                </tr>
+                                            </tbody>
+                                        
+                                        </table>
+                                     
+                                      
+                                    </div>
+                                    <div class="col-md-5">
+                                      
+                                          
+                                          
+                                       
+                                       <br><br><br>
+                                        <table class="table">
+                                        <tbody>
+                                        <tr>
+                                        <td><span class="fa fa-map-marker fablue"></span></td>
+                                        
+                                        <td contenteditable="true">2089 Newcastle rd apt 190</td>
+                                        </tr>
+
+                                        <tr>
+                                        <td></td>
+                                        
+                                        <td contenteditable="true">Novi, MI, 48375</td>
+                                        </tr>
+                                          </tbody>
+                                        
+                                        </table>
+                                    </div>
+                                  </div>
+                              </div>
+                              <div id="India" class="tabcontent">
+                                 <h3>India</h3>
+                                 <p>India is the capital of .............</p>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <!-- /#page-content-wrapper -->
+               <!-- /#modal -->
+               <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                  <div class="modal-dialog" role="document">
+                     
+                      
+                      
+                      
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <script src="js/jquery.min.js"></script>
+      <script src="js/bootstrap.min.js"></script>
+      <!--      camera upload-->
+      <script>
+         $(document).ready(function() {
+         
+         
+         var readURL = function(input) {
+          if (input.files && input.files[0]) {
+              var reader = new FileReader();
+         
+              reader.onload = function (e) {
+                  $('.profile-pic').attr('src', e.target.result);
+              }
+         
+              reader.readAsDataURL(input.files[0]);
+          }
+         }
+         
+         
+         $(".file-upload").on('change', function(){
+          readURL(this);
+         });
+         
+         $(".upload-button").on('click', function() {
+         $(".file-upload").click();
+         });
+         });
+         
+      </script>
+      <script>
+         $("#menu-toggle").click(function(e) {
+             e.preventDefault();
+             $("#wrapper").toggleClass("toggled");
+         });
+          
+//          table edit
+          $('.table-add').click(function () {
+  var $clone = $TABLE.find('tr.hide').clone(true).removeClass('hide table-line');
+  $TABLE.find('table').append($clone);
+});
+
+$('.table-remove').click(function () {
+  $(this).parents('tr').detach();
+});
+      </script>
+      <script>
+         function openCity(evt, cityName) {
+             var i, tabcontent, tablinks;
+             tabcontent = document.getElementsByClassName("tabcontent");
+             for (i = 0; i < tabcontent.length; i++) {
+                 tabcontent[i].style.display = "none";
+             }
+             tablinks = document.getElementsByClassName("tablinks");
+             for (i = 0; i < tablinks.length; i++) {
+                 tablinks[i].className = tablinks[i].className.replace(" active", "");
+             }
+             document.getElementById(cityName).style.display = "block";
+             evt.currentTarget.className += " active";
+         }
+         
+         // Get the element with id="defaultOpen" and click on it
+         document.getElementById("defaultOpen").click();
+      </script>
+   </body>
+</html>

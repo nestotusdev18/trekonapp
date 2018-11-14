@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <title>login</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="css/bootstrap.min.css">
+      <link rel="stylesheet" href="css/style.css">
+       
+       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<!--      <link rel="stylesheet" href="css/font-awesome.min.css">-->
+   </head>
+<style>
+  body{
+   font-family: 'Sofia';    
+  background-image: url('images/background1.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%
+    
+/*background: linear-gradient(to left bottom , #0099dc, #1c9fbe, #579fa1, #7d9b91, #949794);*/
+    
+}
+</style>
+   <body>
+     
+       <div id="root">
+       </div>
+       <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+       <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+       <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+       <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+      <script src="js/bootstrap.min.js"></script>
+      <!-- <script src="js/login.jsx"></script> -->
+      <script type="text/babel">
+        class Login extends React.Component {
+            state = {
+      username: '',
+        password: '',
+      response:'',
+    };
+
+    handleChange = event => {
+        
+        const { name, value } = event.target  //Destructure the current fields name and value
+        this.setState({ [name]: value });
+       // alert(this.setState({ [name]: value }));  //Sets state
+    };
+
+    handleSubmit = event => {
+      event.preventDefault();
+  
+       
+        //Alter your  request like below
+        $.ajax({
+            method: 'post',
+            url: 'http://localhost:8080/api/user/login',
+            headers: {
+               
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            data: {
+                username: this.state.username,
+                password: this.state.password,
+               
+            }
+        }).then(res => {
+            console.log(res);
+            console.log(res);
+         //  response=res.data;
+           this.setState({response:res});
+            if(this.state.response.isOperationSuccess==true)
+            {
+             localStorage.token=this.state.response.token;
+                location.href='dash.html';
+            }
+          else if(this.state.response.isOperationSuccess==false)
+            {
+
+alert(this.state.response.errorMessage);
+
+
+            }
+            else
+            {
+              alert(this.state.response.message)
+            }
+        });
+    }   
+
+            render() {
+
+                return ( <div className="container">
+  <div className="row">
+    <div className="col-sm-10 col-md-10 col-md-offset-1">
+      <div className="account-wall">
+        <br /><br /><br />
+        <div className="row">
+          <div className="col-md-6">
+            <br />
+            <div className="col-md-10 col-md-offset-3">
+              <img src="images/logo.png" width="70%" className="center" />
+            </div>
+            <div className="col-md-10 col-md-offset-2">
+              <br />
+              <img src="images/layer.png" width="100%" className="center" />
+              <br /> <br />  <br /> 
+            </div>     
+          </div>
+          <div className="col-md-6 vl">
+            <form className="form-signin" onSubmit={this.handleSubmit}>
+              <label><b>Username</b></label>
+               <input type="text" className="form-control" placeholder="Username"  id="username" name="username"  autoFocus  onChange={this.handleChange} />
+              
+              <br />
+              <label><b>Password</b></label>
+              <input type="password" className="form-control" id="password" name="password" placeholder="Password"  onChange={this.handleChange} required />
+              <label className="checkbox pull-left">
+                <input type="checkbox" defaultValue="remember-me" />
+                Remember me
+              </label>
+              <a href="#" className="pull-right need-help">Forget Password? </a><span className="clearfix" />
+              <input className="btn btn-lg btn-primary btn-block  center-block" align="center" value="Login" type="submit" />
+                
+            </form>
+            <br />
+            <a href="#" className="text-right new-account">Sign Up </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+     );
+            }
+        }
+        ReactDOM.render(
+            <Login />,
+            document.getElementById('root')
+        );
+        </script>
+   </body>
+</html>

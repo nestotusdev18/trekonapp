@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <title>customer</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="css/bootstrap.min.css">
+      <link rel="stylesheet" href="css/style.css">
+      <link rel="stylesheet" href="css/code.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <!--      <link rel="stylesheet" href="css/font-awesome.min.css">-->
+      <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+      <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+      <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+      <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script> 
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.13.1/jquery.validate.min.js"></script>
+      <!-- Latest compiled and minified CSS -->
+      <!-- Latest compiled and minified JavaScript -->
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+     
+   </head>
+   <style>
+      body{
+      overflow-x: hidden;
+      background-color: #f4f3f8;
+      } 
+      .fa{
+      font-size: large;
+      }
+       .fablue{
+               color: #0b75ef;
+       
+           }
+        
+   </style>
+   <body>
+     
+     <div id="root"></div>        
+              
+          
+   
+
+   </body>
+</html>
+<script type="text/babel">
+    class Nav extends React.Component {
+        componentDidMount(){
+
+   $("#menu-toggle").click(function(e) {
+                e.preventDefault();
+                $("#wrapper").toggleClass("toggled");
+            });
+
+        }
+        render() {
+
+return (
+    <div id="sidebar-wrapper">
+  <ul className="sidebar-nav" style={{marginLeft: 0}}>
+    <li className="sidebar-brand">
+      <a href="#menu-toggle" id="menu-toggle" style={{marginTop: 20, float: 'right'}}> <i className="fa fa-bars " style={{fontSize: '20px !Important', margin: '11px 20px -13px 4px'}} aria-hidden="true" /> </a>
+    </li>
+    <li className="top">
+      <a href="dashboard.html"><i className="fa fa-dashboard " aria-hidden="true"> </i> <span style={{marginLeft: 10}}>Dashboard</span></a>
+    </li>
+    <li>
+      <a href="user.html"> <i className="fa fa-play-circle-o " aria-hidden="true"> </i> <span style={{marginLeft: 10}}>Add User</span> </a>
+    </li>
+    <li>
+      <a href="#"> <i className="fa fa-minus-square-o" aria-hidden="true"> </i> <span style={{marginLeft: 10}}>Add Customer</span> </a>
+    </li>
+    <li>
+      <a href="#"> <i className="fa fa-folder-o" aria-hidden="true"> </i> <span style={{marginLeft: 10}}>Section</span> </a>
+    </li>
+    <li>
+      <a href="#"><i className="fa fa-user-o" aria-hidden="true"> </i> <span style={{marginLeft: 10}}>Section </span> </a>
+    </li>
+    <li className="topset">
+      <a href="#"> <i className="fa fa-gear" aria-hidden="true"> </i> <span style={{marginLeft: 10}}>Section</span> </a>
+    </li>
+  </ul>
+</div>
+
+
+
+
+
+)}
+
+    }
+
+class MyApp extends React.Component {
+  constructor(props){
+super(props);
+
+
+  }
+  componentDidMount()
+{
+ 
+ $("div.bhoechie-tab-menu>div.list-group>a").click(function(e) {
+        e.preventDefault();
+        $(this).siblings('a.active').removeClass("active");
+        $(this).addClass("active");
+        //var index = $(this).index();
+    //    $("div.bhoechie-tab>div.bhoechie-tab-content").removeClass("active");
+        $("div.bhoechie-tab>div.bhoechie-tab-content").addClass("active");
+    });
+
+   
+        
+
+}
+    
+  render() {
+   
+    return (  <a href="#" className="lists list-group-item " onClick= { () =>this.props.getsinglecustomers(this.props.ids)}>
+            <div className="col-sm-3">
+              {this.props.logoImg ? (
+              <img src={"data:image/jpeg;base64,"+this.props.logoImg} className="img-responsive img-circle" />
+              ):(
+                <img src="images/user1.jpg" className="img-responsive img-circle" />
+              )}
+            </div>
+            <div className="col-sm-9">
+              <span className="name">{this.props.customerName}</span><br />
+              <span  >{this.props.customerType}</span><br />
+            </div>
+            <div className="clearfix" />
+          </a>
+          
+          
+          
+          
+          ) ;
+  
+  }
+}
+
+
+    class Tab extends React.Component
+    {   constructor(props) {
+        super(props);
+        this.state={arr : [],options: [
+  { key: 1, text: "Activate", value: true },
+  { key: 2, text: "InActivate", value: false }
+],selectedimgFile:null,
+        isLoaded:false,
+        isSubloaded:false,
+        listLoad:false,
+        customer: {
+        },cust_id:""
+        
+        , isEdit: false,
+        isEditactive:false,
+        }
+     
+    }
+    componentWillMount(){
+if(!localStorage.token)
+{
+  location.href='index.html';
+}
+
+
+ this.getcustomers();
+
+    }
+    //get single customer details
+    getsinglecustomers=(e)=>{
+      this.setState({
+        isSubloaded: false,
+           
+          });
+fetch("http://localhost:8080/api/customer/one/"+e)
+      .then(res => res.json())
+      .then(
+        (result) => {
+          this.setState({
+           customer: result.data,
+  cust_id:result.data._id}
+          );
+          this.setState({
+           
+           isSubloaded:true
+          });
+        },
+        // Note: it's important to handle errors here
+        // instead of a catch() block so that we don't swallow
+        // exceptions from actual bugs in components.
+        (error) => {
+          
+        }
+      )
+
+
+  }
+  //onpage loading
+getcustomers=()=>
+{
+
+
+  fetch("http://localhost:8080/api/customers")
+      .then(res => res.json())
+      .then(
+        (result) => {
+          this.setState({
+            isLoaded: true,
+            arr:result.data
+          });
+          this.setState({cust_id:this.state.arr[0]._id});
+          this.getsinglecustomers(this.state.arr[0]._id);
+        },
+        // Note: it's important to handle errors here
+        // instead of a catch() block so that we don't swallow
+        // exceptions from actual bugs in components.
+        (error) => {
+          this.setState({
+            isLoaded: true,
+            
+          });
+        }
+      )
+     
+}
+//get customers api after edit
+changeCustomers=function()
+{ this.setState({
+           
+           
+           listLoad:true
+         });
+  fetch("http://localhost:8080/api/customers")
+      .then(res => res.json())
+      .then(
+        (result) => {
+          this.setState({
+           
+            arr:result.data,
+            listLoad:false
+          });
+         
+        },
+        // Note: it's important to handle errors here
+        // instead of a catch() block so that we don't swallow
+        // exceptions from actual bugs in components.
+        (error) => {
+         
+        }
+      )
+     
+}
+componentDidMount()
+{
+  
+
+
+    $(document).ready(function()
+     {
+         
+         
+         var readURL = function(input) {
+          if (input.files && input.files[0]) {
+              var reader = new FileReader();
+         
+              reader.onload = function (e) {
+                  $('.profile-pic').attr('src', e.target.result);
+              }
+         
+              reader.readAsDataURL(input.files[0]);
+          }
+         }
+         
+         
+         $(".file-upload").on('change', function(){
+          readURL(this);
+         });
+         
+         $(".upload-button").on('click', function() {
+         $(".file-upload").click();
+         });
+         });
+         
+
+}
+//Edit update exsiting customer function
+handleEdit = () => {
+    this.setState({ isEdit: !this.state.isEdit });
+    
+    if(this.state.isEdit){
+   this.customerSave(this);
+ // this.customerSave.bind(this);
+    }
+   
+  };
+  //onchange update  customer event
+  handleChange = e => {
+    
+    const { name, value } = e.target ; //Destructure the current fields name and value
+
+    let customer = Object.assign({}, this.state.customer);
+    customer[name] =value;
+    
+        this.setState({customer});
+        
+    
+  };
+
+//Edit active customer function
+handleActiveEdit = () => {
+    this.setState({ isEditactive: !this.state.isEditactive });
+    
+    if(this.state.isEditactive){
+      
+this.customerINorActive(this);
+
+    }
+   
+  };
+ //Active or inActive Api
+ customerINorActive=()=>{
+  var active;
+  let customer = Object.assign({}, this.state.customer);
+      if(this.state.customer.isActive == 'false') {
+         active="inactivate";
+  
+    customer.isActive=false;
+       } 
+      else {
+        active="activate";
+        customer.isActive=true;
+        }
+      this.setState({customer});
+      axios.put(`http://localhost:8080/api/customer/${active}/${this.state.customer._id}`, {
+  isActive: this.state.customer.isActive})
+      .then(res => {
+
+      }).catch((error) => {
+      console.error(error);
+    });
+
+
+ 
+
+
+ 
+
+
+
+
+ }
+
+
+
+
+
+  //save one customer API
+  customerSave=()=>
+  {
+
+axios.put('http://localhost:8080/api/customer/save/'+this.state.customer._id, {  isTest: this.state.customer.isTest,
+              
+              customerName: this.state.customer.customerName,
+              customerType: this.state.customer.customerType, })
+      .then(res => {
+        this.changeCustomers(this);
+      }).catch((error) => {
+      console.error(error);
+    });
+
+
+
+
+    }   
+    apiImg=(e)=>{
+console.log(e.target.files[0].name);
+
+     //this.setState({selectedimgFile: e.target.files[0]});
+//console.log(this.state.selectedimgFile);
+const formData = new FormData();
+  formData.append('logoImg', e.target.files[0]);
+
+  axios.put('http://localhost:8080/api/customer/logo/upload/'+this.state.customer._id, formData,{
+  
+  onUploadProgress: progressEvent => {
+      console.log(Math.round(progressEvent.loaded / progressEvent.total)*100);
+    }}).then(res => {
+      let customer = Object.assign({}, this.state.customer);
+   
+customer.logoImg=res.data.data;
+this.setState({customer});
+
+        this.changeCustomers(this);
+
+
+
+
+
+      }).catch((error) => {
+      console.error(error);
+    });
+
+
+
+
+    }
+render(){
+ 
+    
+  
+return( 
+  <div>
+   {this.state.isLoaded ?
+   (
+     <div>
+  <div className="col-md-3 bhoechie-tab-menu">
+        <div style={{border: 'solid 1px #ccc'}}>
+          <h4 align="center">Customer <a href="#" className="fa fa-ellipsis-v" style={{float: 'right', marginRight: 15, color: '#777'}} /><a type="button" className="from btn btn-sm fa fa-user-plus " style={{float: 'right', margin: '-6px 5px', color: '#777'}} /></h4>
+         </div>
+         <div style={{}}>
+          <div className="inputs input-group stylish-input-group" style={{ borderBottom: '1px solid #ddd'}}>
+            <input type="text" className="form-control" placeholder="Search" />
+            <span className="input-group-addon">
+              <button type="submit" style={{padding: '0 15px'}}>
+                <span className="fa fa-search" />
+              </button>  
+            </span>
+          </div>
+        </div>
+        
+
+
+         {!this.state.listLoad ?(
+        <div className="list-group">
+       
+         {this.state.arr.map(item => <MyApp key={item._id} ids={item._id} logoImg={item.logoImg} getsinglecustomers={this.getsinglecustomers} customerName={item.customerName} customerType={item.customerType} />)}
+      
+        </div>
+         ):(
+
+ <div className="list-group">
+  <div className="loader"><div className="react-preloader"><div className="react-preloader__inner"></div></div></div>
+
+
+</div>
+
+
+         )}
+      </div>
+      <div className="col-md-9 rtab-menu bhoechie-tab bhoechie-tab-menu">
+        <div style={{border: 'solid 1px #ccc'}}>
+          <h4 align="center">Details<a href="#" className=" fa fa-bell" style={{float: 'right', marginRight: 15, color: '#777'}} /></h4></div>
+     
+      {this.state.isSubloaded ?(
+
+<div>
+
+  {/*.................... edit section............. */}
+ 
+
+
+   
+  
+        <div className="bhoechie-tab-content active">
+          <div>
+            <div className="col-sm-12">
+              <div className="row">
+                <div className="col-sm-4">
+                  <table className="table">
+                    <tbody> {this.state.isEdit ?(
+                      <tr>
+                        <td className="fablue">Name</td>
+                        <td>-</td>
+                        <td>
+                          <input
+            type="text" name="customerName"
+            value= { this.state.customer.customerName}
+            onChange={this.handleChange.bind(this)}
+            onBlur={this.handleEdit.bind(this)}
+          />
+         
+         
+          <input
+            type="text" name="customerType"
+            value= { this.state.customer.customerType}
+            onChange={this.handleChange.bind(this)}
+            onBlur={this.handleEdit.bind(this)}
+          />
+            
+          <input
+            type="text" name="isTest"
+            value= { this.state.customer.isTest}
+            onChange={this.handleChange.bind(this)}
+            onBlur={this.handleEdit.bind(this)}
+          />
+                        
+                        </td></tr> ):
+ (
+   <tr onDoubleClick={this.handleEdit.bind(this)}>
+  <td className="fablue">Name</td>
+                        <td>-</td>
+                        <td>
+                         {this.state.customer.customerName}
+                        </td>
+                      </tr>
+
+ )}
+                     
+                    </tbody>
+                  </table>
+                </div>
+                <div className="col-sm-4 col-sm-offset-4">
+                  {/*                                        <button class="btn btn-xs btn-primarys" type="button" data-toggle="modal" data-target="#myModal"  style="float: right;">Edit</button>*/}
+                </div>
+              </div>
+            </div>
+            <div className="row">
+              <div className="col-md-3">
+                <br />
+                <div className="col-sm-12">
+                  <div className="small-12 medium-2 large-2 columns">
+                    <label> {/* User Profile Image */}
+                      <div className="circle">
+                       {this.state.customer.logoImg?(
+                        <img className="profile-pic images" src={"data:image/jpeg;base64,"+this.state.customer.logoImg} />
+                       ):(<img className="profile-pic images" src="images/user1.jpg" />)}
+                        <div className="middle">
+                          <div className="text">Click Here</div>
+                        </div>
+                        {/* Default Image */}
+                        {/* <i class="fa fa-user fa-5x"></i> */}
+                      </div>
+                      <input className="file-upload" onChange={this.apiImg} type="file" accept="image/*" />
+                      <div className="p-image" align="center">
+                        <span className="fa fa-camera fablue upload-button" />
+                      </div>
+                    </label>
+                  </div>
+                </div>
+                <div className="col-sm-12" style={{margin: '135px 15px'}}>
+                  <table className="table">
+                    <tbody>
+                   {this.state.isEditactive ? ( <tr>
+                        <td><span className="fa fa-info-circle fablue" /></td>
+                        <td> 
+                        <select  name="isActive"
+            value={this.state.customer.isActive}
+          
+            onChange={this.handleChange.bind(this)}
+            onBlur={this.handleActiveEdit.bind(this)} 
+            >
+            {this.state.options.map(item =>
+
+<option key={item.key} value={item.value}>{item.text}</option>
+            )}
+
+            </select>
+         </td>
+                      </tr>):(
+<tr  onDoubleClick={this.handleActiveEdit.bind(this)}>
+  <td><span className="fa fa-info-circle fablue" /></td>
+{this.state.customer.isActive ?(
+ 
+<td>
+Active
+
+</td>
+
+):
+(
+ 
+<td>
+Inactive
+
+</td>
+
+)
+
+}
+
+</tr>
+
+
+
+
+                      )}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div className="col-md-4">
+                <br /><br /><br />
+                <table className="table">
+                  <tbody>
+                    <tr>
+                      <td><span className="fa fa-user fablue" /></td>
+                      <td  >Alex Mc Gartly</td>
+                    </tr>
+                    <tr>
+                      <td><span className="fa fa-phone fablue" /></td>
+                      <td  >2480909101</td>
+                    </tr>
+                    <tr>
+                      <td />
+                      <td  >4041299089</td>
+                    </tr>
+                    <tr>
+                      <td><span className="fa fa-envelope fablue" /> </td>
+                      <td  > alex@gm.com</td>
+                    </tr>
+                    <tr>
+                      <td />
+                      <td  >mcgartly@gm.com</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div className="col-md-5">
+                <br /><br /><br />
+                <table className="table">
+                  <tbody>
+                    <tr>
+                      <td><span className="fa fa-map-marker fablue" /></td>
+                      <td  >2089 Newcastle rd apt 190</td>
+                    </tr>
+                    <tr>
+                      <td />
+                      <td  >Novi, MI, 48375</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+       
+    
+     
+
+
+
+
+
+  
+
+        
+    
+    
+      </div> 
+    
+      ):
+
+      (
+
+
+<div className="loader"><div className="react-preloader"><div className="react-preloader__inner"></div></div></div>
+
+
+                        )
+                        
+                        
+                        
+                        
+                        }  </div>
+
+
+
+
+    </div>
+
+)
+
+
+
+
+
+
+
+:(
+<div className="loader"><div className="react-preloader"><div className="react-preloader__inner"></div></div></div>
+)}
+</div>)
+
+
+}
+
+
+
+
+    }
+   
+
+      ReactDOM.render( <div className="container-fluid">
+         <div className="row">
+            <div id="wrapper" className="toggled">
+            <Nav /> 
+            
+            <div className="container-fluid">
+                     <div className="row">
+                        <div className="col-lg-12 ">
+                            
+                                <Tab />
+                            
+                            </div></div></div>  </div>
+         </div>
+      </div>,
+            document.getElementById('root')
+        );
+        </script>
+         

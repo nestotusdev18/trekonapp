@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <title>customer</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="css/bootstrap.min.css">
+      <link rel="stylesheet" href="css/style.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <!--      <link rel="stylesheet" href="css/font-awesome.min.css">-->
+      <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+      <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+      <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script> 
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.13.1/jquery.validate.min.js"></script>
+      <!-- Latest compiled and minified CSS -->
+      <!-- Latest compiled and minified JavaScript -->
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+     
+   </head>
+   <style>
+      body{
+      overflow-x: hidden;
+      background-color: #f4f3f8;
+      } 
+      .fa{
+      font-size: large;
+      }
+       .fablue{
+               color: #0b75ef;
+       }
+       
+       
+       
+       
+   </style>
+   <body>
+     
+     <div id="root"></div>        
+              
+          
+   
+
+   </body>
+</html>
+<script type="text/babel">
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isEdit: false,
+      firstName: "hello",
+      lastName: "last",
+      middleName: "hi",
+      active: false
+    };
+  }
+
+  handleEdit = () => {
+    this.setState({ isEdit: !this.state.isEdit });
+  };
+
+  handleChange = e => {
+    
+    const { name, value } = e.target  //Destructure the current fields name and value
+        this.setState({ [name]: value });
+      
+       // alert(this.setState({ [name]: value }));  //Sets state
+  };
+
+  render() {
+    return (
+      <div>
+        {this.state.isEdit ? (
+            <div>
+        <span>FirstName : </span> 
+        <input
+            type="text" name="firstName"
+            value={this.state.firstName}
+            onChange={this.handleChange.bind(this)}
+            onBlur={this.handleEdit.bind(this)}
+          /><br />
+          <span> LastName : </span>   <input
+            type="text" name="lastName"
+            value={this.state.lastName}
+            onChange={this.handleChange.bind(this)}
+            onBlur={this.handleEdit.bind(this)}
+          /><br />
+          <span >MiddleName : </span> <input
+            type="text" name="middleName"
+            value={this.state.middleName}
+            onChange={this.handleChange.bind(this)}
+            onBlur={this.handleEdit.bind(this)}
+
+          />
+          <span >Active : </span> 
+          <select
+            name="active"
+            value={this.state.active}
+            onChange={this.handleChange.bind(this)}
+            onBlur={this.handleEdit.bind(this)} >
+<option value="false">Inactive</option>
+<option value="true">Active</option>
+         </select >
+          
+          
+          </div>
+        ):(<div>
+            <span> FirstName : </span>  <span onDoubleClick={this.handleEdit.bind(this)}>
+            {this.state.firstName}
+          </span><br />
+          <span >LastName : </span>  <span onDoubleClick={this.handleEdit.bind(this)}>
+            {this.state.lastName}
+          </span><br />
+          <span >MiddleName : </span>  <span onDoubleClick={this.handleEdit.bind(this)}>
+            {this.state.middleName}
+          </span><button className="fa fa-pencil" onClick={this.handleEdit.bind(this)}></button></div>
+        )}
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(<div><App /></div>, document.getElementById("root"));
+
+
+
+
+
+
+
+
+</script>
+
+   
+            
+     
